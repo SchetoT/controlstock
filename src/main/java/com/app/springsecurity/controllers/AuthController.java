@@ -41,7 +41,7 @@ public class AuthController {
         }
         try {
             authService.registerUser(newUserDto);
-            return ResponseEntity.status(HttpStatus.CREATED).body("Registrado");
+            return ResponseEntity.status(HttpStatus.CREATED).body("Usuario registrado con exito");
         } catch (IllegalArgumentException e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }

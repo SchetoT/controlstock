@@ -39,13 +39,23 @@ public class AuthService {
         return jwtUtil.generateToken(authResult);
     }
 
-    public void registerUser(NewUserDto newUserDto){
-        if (userService.existsByUserName(newUserDto.getUserName())){
+    public void registerUser(NewUserDto newUserDto) {
+        if (userService.existsByUserName(newUserDto.getUserName())) {
             throw new IllegalArgumentException("El nombre de usuario ya existe");
         }
 
-        Role roleUser = roleRepository.findByName(RoleList.ROLE_USER).orElseThrow(()->new RuntimeException("Rol no encontrado"));
-        User user = new User(newUserDto.getUserName(), passwordEncoder.encode(newUserDto.getPassword()) , roleUser);
+        // Validar el rol proporcionado
+        RoleList roleName;
+        try {
+            roleName = RoleList.valueOf(newUserDto.getRole().toUpperCase()); // Convertir a mayúsculas para evitar errores de formato
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Rol inválido: " + newUserDto.getRole());
+        }
+
+        Role role = roleRepository.findByName(roleName)
+                .orElseThrow(() -> new RuntimeException("Rol no encontrado"));
+
+        User user = new User(newUserDto.getUserName(), passwordEncoder.encode(newUserDto.getPassword()), role);
         userService.save(user);
     }
 }

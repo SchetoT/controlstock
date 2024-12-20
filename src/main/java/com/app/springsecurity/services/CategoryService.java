@@ -27,8 +27,15 @@ public class CategoryService {
     }
 
     //actualizar categoria
-    public Category updateCategory(Integer id, Category category) {
-        return categoryRepository.save(category);
+    public Category updateCategory(Integer id, Category updatedCategory) {
+        Optional<Category> existingCategory = categoryRepository.findById(id);
+        if (existingCategory.isPresent()) {
+            Category category = existingCategory.get();
+            category.setName(updatedCategory.getName());
+            return categoryRepository.save(category);
+        } else {
+            return null;
+        }
     }
     //eliminar categoria
     public void deleteCategory(Integer id) {

@@ -2,13 +2,9 @@ package com.app.springsecurity.entities;
 
 import com.app.springsecurity.enums.RoleList;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 public class Role {
 
@@ -16,8 +12,19 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false)
+    @Column(name = "name", unique = true, nullable = false)
+    @Enumerated(EnumType.STRING)
     private RoleList name;
+
+    public Role(RoleList name) {
+        this.name = name;
+    }
+    public Role() {
+    }
+    public Role(Integer id, RoleList name) {
+        this.id = id;
+        this.name = name;
+    }
 
     public Integer getId() {
         return id;
