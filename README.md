@@ -102,30 +102,3 @@ Obtener todas las categorías: GET /api/categories
 Crear una categoría: POST /api/categories (requiere rol ADMIN)
 
 
-
-Consulta la documentación completa en Swagger.
-
-Documentación de la API
-
-La documentación interactiva de la API está disponible en http://localhost:8080/swagger-ui.html.
-
-Contribuciones
-
-Las contribuciones son bienvenidas. Por favor, sigue estos pasos:
-
-1. Haz un fork del repositorio.
-
-
-2. Crea una nueva rama (git checkout -b feature/nueva-funcionalidad).
-
-
-3. Realiza tus cambios y haz commit (git commit -m 'Añadir nueva funcionalidad').
-
-
-4. Sube tus cambios (git push origin feature/nueva-funcionalidad).
-
-
-5. Abre un Pull Request.
-
-
-
