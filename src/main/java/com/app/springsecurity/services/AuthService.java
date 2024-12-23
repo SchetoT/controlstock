@@ -31,20 +31,20 @@ public class AuthService {
         this.jwtUtil = jwtUtil;
         this.authenticationManagerBuilder = authenticationManagerBuilder;
     }
-
+    //autenticar usuario
     public String authenticate(String username, String password){
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username,password);
         Authentication authResult = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
         SecurityContextHolder.getContext().setAuthentication(authResult);
         return jwtUtil.generateToken(authResult);
     }
-
+    //registrar usuario
     public void registerUser(NewUserDto newUserDto) {
         if (userService.existsByUserName(newUserDto.getUserName())) {
             throw new IllegalArgumentException("El nombre de usuario ya existe");
         }
 
-        // Validar el rol proporcionado
+        //Validar el rol proporcionado
         RoleList roleName;
         try {
             roleName = RoleList.valueOf(newUserDto.getRole().toUpperCase()); // Convertir a mayúsculas para evitar errores de formato

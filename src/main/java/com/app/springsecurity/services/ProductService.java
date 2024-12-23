@@ -17,7 +17,7 @@ public class ProductService {
 
     @Autowired
     private ProductRepository productRepository;
-    @Autowired // Inyecta CategoryRepository
+    @Autowired
     private CategoryRepository categoryRepository;
 
     //crear y guardar producto
@@ -40,7 +40,6 @@ public class ProductService {
         Optional<Product> existingProduct = productRepository.findById(id);
         if (existingProduct.isPresent()) {
             Product product = existingProduct.get();
-            // Actualiza solo los campos que necesitas actualizar
             product.setName(updatedProduct.getName());
             product.setPrice(updatedProduct.getPrice());
             product.setStock(updatedProduct.getStock());
@@ -52,9 +51,9 @@ public class ProductService {
                 }
             }
 
-            return productRepository.save(product); // Guarda los cambios
+            return productRepository.save(product);
         } else {
-            return null; // Devuelve null si no se encuentra el producto
+            return null;
         }
     }
 
@@ -64,7 +63,7 @@ public class ProductService {
     }
     public void addCategoryToProduct(Integer productId, Integer categoryId) {
         Optional<Product> productOptional = productRepository.findById(productId);
-        Optional<Category> categoryOptional = categoryRepository.findById(categoryId); // Usa categoryRepository
+        Optional<Category> categoryOptional = categoryRepository.findById(categoryId);
 
         if (productOptional.isPresent() && categoryOptional.isPresent()) {
             Product product = productOptional.get();
@@ -75,7 +74,7 @@ public class ProductService {
         } else {
             if (!productOptional.isPresent()) {
                 throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Producto no encontrado con ID: " + productId);
-            } else { // !categoryOptional.isPresent()
+            } else {
                 throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Categoría no encontrada con ID: " + categoryId);
             }
         }
