@@ -34,3 +34,4 @@ build/
 
 ### db ###
 application.properties
+!application-example.properties
