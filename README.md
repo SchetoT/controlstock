@@ -24,7 +24,6 @@
 - *JWT (JSON Web Tokens):* Para autenticación basada en tokens.
 - *MySQL:* Base de datos relacional para almacenar los datos.
 - *Lombok:* Reducción de código repetitivo mediante anotaciones.
-- *Springdoc OpenAPI (Swagger):* Documentación interactiva de la API.
 
 ## Requisitos Previos
 
@@ -130,10 +129,3 @@ Las contribuciones son bienvenidas. Por favor, sigue estos pasos:
 
 
 
-Licencia
-
-Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo LICENSE para más detalles.
-
-Contacto
-
-Para consultas o sugerencias, por favor contacta a tu_email@example.com.
